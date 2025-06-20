@@ -97,3 +97,4 @@ artifacts/
 *.swp
 *.swo
 *~ 
+.fake

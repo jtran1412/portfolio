@@ -34,13 +34,13 @@ const Home: React.FC = () => {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 2, mb: 4 }}>
-          <Box component="a" href="tel:647-526-8553" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'text.secondary', '&:hover, &:hover .MuiSvgIcon-root': { color: 'accent.main' } }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'text.secondary' }}>
             <PhoneIcon sx={{ mr: 1, color: 'accent.main' }} />
             <Typography variant="body1" component="span" sx={{ color: 'inherit' }}>
               647-526-8553
             </Typography>
           </Box>
-          <Box component="a" href="mailto:jtran1412@gmail.com" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'text.secondary', '&:hover, &:hover .MuiSvgIcon-root': { color: 'accent.main' } }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'text.secondary' }}>
             <EmailIcon sx={{ mr: 1, color: 'accent.main' }} />
             <Typography variant="body1" component="span" sx={{ color: 'inherit' }}>
               jtran1412@gmail.com
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
           </Button>
           <IconButton 
             aria-label="LinkedIn" 
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/in/justintranaboutme/"
             target="_blank"
             sx={{ color: 'accent.main', '&:hover': { color: 'accent.dark' } }}
           >
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
           </IconButton>
           <IconButton 
             aria-label="GitHub" 
-            href="https://www.github.com"
+            href="https://github.com/jtran1412"
             target="_blank"
             sx={{ color: 'accent.main', '&:hover': { color: 'accent.dark' } }}
           >
