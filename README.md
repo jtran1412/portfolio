@@ -68,13 +68,12 @@ The frontend will be available at `http://localhost:3000`
 
 ## Features
 
-- Modern, responsive design using Material-UI
-- TypeScript for enhanced type safety
-- ASP.NET Core backend with API endpoints
-- Single-page application with smooth scrolling
-- Component-based architecture
-- Fast development with Vite
-- Easy to customize and extend
+- **Interactive UI:** Modern, responsive design with a theme toggle for light and dark modes.
+- **Background Music:** Looping background music with a mute toggle.
+- **TypeScript:** Type safety for a more robust frontend codebase.
+- **ASP.NET Core Backend:** A solid foundation for future API endpoints.
+- **Component-Based Architecture:** Reusable and maintainable code.
+- **Fast Development with Vite:** Near-instant HMR for a great developer experience.
 
 ## Development
 
