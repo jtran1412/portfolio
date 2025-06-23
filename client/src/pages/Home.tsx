@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Box, Button, IconButton } from '@mui/material';
+import { Container, Typography, Box, Button, IconButton, useTheme } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DownloadIcon from '@mui/icons-material/Download';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -8,6 +8,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
 const Home: React.FC = () => {
+  const theme = useTheme();
   return (
     <Container 
       maxWidth="lg" 
@@ -21,7 +22,18 @@ const Home: React.FC = () => {
       }}
     >
       <Box>
-        <Typography variant="h1" component="h1" sx={{ fontWeight: 'bold' }}>
+        <Typography 
+          variant="h1" 
+          component="h1" 
+          sx={{ 
+            fontWeight: 'bold', 
+            transition: 'color 0.3s', 
+            userSelect: 'none',
+            cursor: 'pointer',
+            '&:hover': { color: 'accent.main' },
+            '&:active': { color: 'accent.dark' }
+          }}
+        >
           Justin Tran
         </Typography>
         <Typography variant="h4" color="textSecondary" gutterBottom>
@@ -53,7 +65,7 @@ const Home: React.FC = () => {
             color="accent"
             startIcon={<DownloadIcon />} 
             sx={{ mr: 2, '&:hover': { backgroundColor: 'accent.dark' } }}
-            href="/resume.pdf"
+            href="/resume/JustinTranResume.docx"
             download
           >
             Resume

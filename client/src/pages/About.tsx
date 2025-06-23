@@ -42,72 +42,18 @@ const About: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [techTabValue, setTechTabValue] = useState(0);
   const [avatarOffset, setAvatarOffset] = useState({ x: 0, y: 0 });
-  const [mouseActive, setMouseActive] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const avatarRef = useRef<HTMLDivElement>(null);
+  const avatarBoxRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!avatarRef.current || !containerRef.current) return;
-      const avatarRect = avatarRef.current.getBoundingClientRect();
-      const containerRect = containerRef.current.getBoundingClientRect();
-      // Center of avatar
-      const avatarCenter = {
-        x: avatarRect.left + avatarRect.width / 2,
-        y: avatarRect.top + avatarRect.height / 2,
-      };
-      // Mouse position relative to container
-      const mouse = {
-        x: e.clientX,
-        y: e.clientY,
-      };
-      // Calculate the furthest point from the mouse within the container (horizontal only)
-      const leftLimit = containerRect.left + avatarRect.width / 2;
-      const rightLimit = containerRect.right - avatarRect.width / 2;
-      let targetX;
-      if (mouse.x < avatarCenter.x) {
-        // Move as far right as possible
-        targetX = rightLimit;
-      } else {
-        // Move as far left as possible
-        targetX = leftLimit;
-      }
-      // Clamp so avatar doesn't move outside container
-      let offsetX = targetX - avatarCenter.x;
-      // For vertical, keep the same logic as before (or you can allow more)
-      const maxYOffset = 60;
-      const dy = mouse.y - avatarCenter.y;
-      let offsetY = 0;
-      if (Math.abs(dy) > 10) {
-        offsetY = dy > 0 ? -maxYOffset : maxYOffset;
-      }
-      // If mouse is very close to avatar, reset
-      const dist = Math.sqrt((mouse.x - avatarCenter.x) ** 2 + (mouse.y - avatarCenter.y) ** 2);
-      if (dist < 10) {
-        setAvatarOffset({ x: 0, y: 0 });
-        setMouseActive(false);
-        return;
-      }
-      setMouseActive(true);
-      setAvatarOffset({ x: offsetX, y: offsetY });
-    };
-    const handleMouseLeave = () => {
-      setMouseActive(false);
-      setAvatarOffset({ x: 0, y: 0 });
-    };
-    const ref = containerRef.current;
-    if (ref) {
-      ref.addEventListener('mousemove', handleMouseMove);
-      ref.addEventListener('mouseleave', handleMouseLeave);
-    }
-    return () => {
-      if (ref) {
-        ref.removeEventListener('mousemove', handleMouseMove);
-        ref.removeEventListener('mouseleave', handleMouseLeave);
-      }
-    };
-  }, []);
+  // Dashboard projects data
+  const projects = [
+    { title: 'Project One', description: 'Description for project one.', link: '#' },
+    { title: 'Project Two', description: 'Description for project two.', link: '#' },
+    { title: 'Project Three', description: 'Description for project three.', link: '#' },
+    { title: 'Project Four', description: 'Description for project four.', link: '#' },
+    { title: 'Project Five', description: 'Description for project five.', link: '#' },
+    { title: 'Project Six', description: 'Description for project six.', link: '#' },
+  ];
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -199,7 +145,6 @@ const About: React.FC = () => {
         justifyContent: 'center',
         py: 4
       }}
-      ref={containerRef}
     >
       <Box sx={{
         display: 'flex',
@@ -207,11 +152,7 @@ const About: React.FC = () => {
         alignItems: 'center',
         mb: 6,
       }}>
-        <Box sx={{
-          position: 'relative',
-          mb: 4,
-          transform: { xs: 'translateX(0)', md: 'translateX(40px)' }
-        }}>
+        <Box sx={{ position: 'relative', mb: 4, transform: { xs: 'translateX(0)', md: 'translateX(40px)' } }}>
           <Paper elevation={3} sx={{
             width: { xs: 280, md: 320 },
             height: { xs: 280, md: 320 },
@@ -256,40 +197,48 @@ const About: React.FC = () => {
             }
           }}>
             <Typography variant="body2" paragraph sx={{ mb: 1 }}>
-              Hi! I love getting the job done fast and avoiding hours of stressful debugging.
+              Hi! I love getting the job done nice, done fast and done well.
             </Typography>
             <Typography variant="body2" paragraph sx={{ mb: 1 }}>
-              Outside of work, I test new Pokémon TCG decks, research stocks, and read fantasy novels. My favorite genres: overpowered mc, face-slapping, martial arts, regressor, and failing upwards.
-            </Typography>
-            <Typography variant="body2">
-              Touch my forehead!
+              Outside of work, I like to test new technologies to add to my Pokémon TCG decks, research stocks to add to my portfolio, and read fantasy novels. 
+              My favorite genres: overpowered mc, face-slapping, martial arts, regressor, and failing upwards.
             </Typography>
           </Paper>
         </Box>
         <Box
-          ref={avatarRef}
+          ref={avatarBoxRef}
           sx={{
-            transform: mouseActive
-              ? `translate(${avatarOffset.x}px, ${avatarOffset.y}px)`
-              : 'translateX(-20px)',
-            transition: mouseActive
-              ? 'transform 0.2s cubic-bezier(0.4,0,0.2,1)'
-              : 'transform 0.6s cubic-bezier(0.4,0,0.2,1)',
-            animation: mouseActive ? undefined : 'moveBackAndForth 4s ease-in-out infinite',
-            '@keyframes moveBackAndForth': {
-              '0%, 100%': {
-                transform: 'translateX(-20px)',
-              },
-              '50%': {
-                transform: 'translateX(20px)',
-              },
-            },
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: 220,
+            position: 'relative',
+            overflow: 'visible',
           }}
         >
-          <img 
-            src="/images/Avatar.png" 
-            alt="Avatar of Justin Tran" 
-            style={{ width: '200px', height: '200px', borderRadius: '50%' }} 
+          <img
+            src="/images/Avatar.png"
+            alt="Avatar of Justin Tran"
+            style={{
+              width: '200px',
+              height: '200px',
+              borderRadius: '50%',
+              position: 'relative',
+              transform: `translate(${avatarOffset.x}px, ${avatarOffset.y}px)`,
+              transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              const box = avatarBoxRef.current;
+              if (!box) return;
+              const boxRect = box.getBoundingClientRect();
+              // Allow movement within the box, but keep avatar fully visible
+              const maxX = (boxRect.width - 200) / 2;
+              const maxY = (boxRect.height - 200) / 2;
+              const x = Math.floor(Math.random() * (maxX * 2 + 1)) - maxX;
+              const y = Math.floor(Math.random() * (maxY * 2 + 1)) - maxY;
+              setAvatarOffset({ x, y });
+            }}
           />
         </Box>
       </Box>
