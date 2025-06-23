@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Box, Button, IconButton, useTheme } from '@mui/material';
+import { Container, Typography, Box, Button, IconButton } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DownloadIcon from '@mui/icons-material/Download';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -8,7 +8,6 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
 const Home: React.FC = () => {
-  const theme = useTheme();
   return (
     <Container 
       maxWidth="lg" 

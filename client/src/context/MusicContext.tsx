@@ -1,4 +1,4 @@
-import React, { createContext, useState, useRef, useCallback, ReactNode, useEffect } from 'react';
+import React, { createContext, useState, useRef, ReactNode, useEffect } from 'react';
 
 const playlist = [
     '/music/SSJ3 Power Up Remake By Gladius.mp3',
@@ -16,12 +16,8 @@ export const MusicContext = createContext<MusicContextType>({
 
 export const MusicProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [currentSongIndex, setCurrentSongIndex] = useState(0);
+    const [currentSongIndex] = useState(0);
     const audioRef = useRef<HTMLAudioElement | null>(null);
-
-    const playNextSong = useCallback(() => {
-        setCurrentSongIndex((prevIndex) => (prevIndex + 1) % playlist.length);
-    }, []);
 
     const togglePlay = () => {
         if (audioRef.current) {

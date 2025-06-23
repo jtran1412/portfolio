@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Container, 
   Typography, 
@@ -45,21 +45,11 @@ const About: React.FC = () => {
   const avatarBoxRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
 
-  // Dashboard projects data
-  const projects = [
-    { title: 'Project One', description: 'Description for project one.', link: '#' },
-    { title: 'Project Two', description: 'Description for project two.', link: '#' },
-    { title: 'Project Three', description: 'Description for project three.', link: '#' },
-    { title: 'Project Four', description: 'Description for project four.', link: '#' },
-    { title: 'Project Five', description: 'Description for project five.', link: '#' },
-    { title: 'Project Six', description: 'Description for project six.', link: '#' },
-  ];
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
-  const handleTechTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTechTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTechTabValue(newValue);
   };
 

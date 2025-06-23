@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, CssBaseline, IconButton } from '@mui/material';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
